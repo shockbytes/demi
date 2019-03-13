@@ -20,13 +20,11 @@ class FirebaseLoginRepository implements LoginRepository {
           .then((user) {
 
             if (user == null) {
-              print("User null");
               return _auth.signInWithGoogle(
                 accessToken: googleAuth.accessToken,
                 idToken: googleAuth.idToken,
               ).then(((user) => DemiUser(user.displayName, user.photoUrl)));
             } else {
-              print("User not null $user");
               return DemiUser(user.displayName, user.photoUrl);
             }
       });
